@@ -17,6 +17,7 @@ export default function App() {
         .then((response) => {
           // Study this response with a breakpoint or log statements
           // and set the response data as the 'movieList' slice of state
+          // setMovieList()
           console.log(response);
         })
         .catch((error) => {
@@ -40,7 +41,7 @@ export default function App() {
         }
       />
 
-      <Route exact path="/" component={MovieList} />
+      <Route exact path="/" component={MovieList} props={movieList} />
       <Route path="/Movie" component={Movie} />
     </div>
   );
