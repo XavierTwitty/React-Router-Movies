@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Route, Link, Switch } from "react-router-dom";
+import MovieList from "./MovieList";
 
 export default function Movie(props) {
   const [movie, setMovie] = useState();
@@ -10,16 +12,18 @@ export default function Movie(props) {
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/movies/${id}`) // Study this endpoint with Postman
-      .then(response => {
+      .then((response) => {
         // Study this response with a breakpoint or log statements
-        // and set the response data as the 'movie' slice of state
+        // and set the response data as the 'movie' slice of state`
+        console.log(response);
+        // setMovie(response.movie);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
     // This effect should run every time time
     // the `id` changes... How could we do this?
-  }, []);
+  }, [movie.id]);
 
   // Uncomment this only when you have moved on to the stretch goals
   // const saveMovie = evt => { }
@@ -42,7 +46,7 @@ export default function Movie(props) {
         </div>
         <h3>Actors</h3>
 
-        {stars.map(star => (
+        {stars.map((star) => (
           <div key={star} className="movie-star">
             {star}
           </div>
