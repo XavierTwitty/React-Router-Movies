@@ -1,12 +1,8 @@
 import React from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function MovieList(props) {
-  const {} = props;
-
-  const { url } = useRouteMatch();
-
-  console.log(props.movies);
+  console.log("Movie List:", props.movies);
 
   return (
     <div className="movie-list">
@@ -19,9 +15,15 @@ export default function MovieList(props) {
 
 function MovieDetails(props) {
   const { title, director, metascore } = props.movie;
+  const history = useHistory();
+
+  const onClick = (event) => {
+    history.push(`/movies/${props.movie.id}`);
+  };
 
   return (
-    <div className="movie-card">
+    <div onClick={onClick} className="movie-card">
+      {" "}
       <h2>{title}</h2>
       <div className="movie-director">
         Director: <em>{director}</em>
